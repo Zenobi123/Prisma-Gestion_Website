@@ -19,8 +19,8 @@ const ContactInfo = ({ contactData }: ContactInfoProps) => {
     description = "Prenez contact avec notre équipe pour discuter de vos besoins et objectifs.",
     address = "Yaoundé, Cameroun",
     email = "contact@prismagestion.com",
-    phone = "+237 694 310 554",
-    whatsapp = "+237 671 050 546"
+    phone = "+237 656 75 24 75",
+    whatsapp = "+237 694 310 554"
   } = contactData || {};
 
   return (
