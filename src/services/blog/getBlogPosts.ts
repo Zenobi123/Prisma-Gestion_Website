@@ -2,7 +2,7 @@
 import { supabase } from "@/integrations/supabase/client";
 import { BlogPost, BlogPostStatus } from "@/types/blog";
 
-const DEFAULT_BLOG_POSTS: BlogPost[] = [
+export const DEFAULT_BLOG_POSTS: BlogPost[] = [
   {
     id: -10,
     title: "Veille impots.cm : dernières publications fiscales",
