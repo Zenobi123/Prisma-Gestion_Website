@@ -24,19 +24,6 @@ const ServicesSection = () => {
             spécifiques de votre entreprise, quelle que soit sa taille ou son secteur d'activité.
           </p>
           
-          {/* Refresh button - only visible if there are loading or error states */}
-          {(loading || error) && (
-            <Button 
-              variant="outline" 
-              size="sm" 
-              className="mt-4"
-              onClick={refreshServices}
-              disabled={loading}
-            >
-              <RefreshCw className={`h-4 w-4 mr-1 ${loading ? 'animate-spin' : ''}`} />
-              {loading ? 'Chargement...' : 'Actualiser'}
-            </Button>
-          )}
         </div>
 
         {loading ? (
