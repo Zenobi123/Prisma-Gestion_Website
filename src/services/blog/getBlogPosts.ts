@@ -2,7 +2,7 @@
 import { supabase } from "@/integrations/supabase/client";
 import { BlogPost, BlogPostStatus } from "@/types/blog";
 
-const DEFAULT_BLOG_POSTS: BlogPost[] = [
+export const DEFAULT_BLOG_POSTS: BlogPost[] = [
   {
     id: -10,
     title: "Veille impots.cm : dernières publications fiscales",
@@ -225,6 +225,9 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
       .order('id', { ascending: false });
 
     if (error) {
+      if ((error as { code?: string }).code === 'SUPABASE_DISABLED') {
+        return DEFAULT_BLOG_POSTS;
+      }
       console.error('Erreur lors de la récupération des articles:', error);
       return [];
     }
@@ -274,6 +277,9 @@ export const getPublishedBlogPosts = async (): Promise<BlogPost[]> => {
       .order('id', { ascending: false });
 
     if (error) {
+      if ((error as { code?: string }).code === 'SUPABASE_DISABLED') {
+        return DEFAULT_BLOG_POSTS.filter(p => p.status === 'Publié');
+      }
       console.error('Erreur lors de la récupération des articles publiés:', error);
       return [];
     }

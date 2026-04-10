@@ -1,6 +1,7 @@
 
 import { supabase } from "@/integrations/supabase/client";
 import { BlogPost, BlogPostStatus } from "@/types/blog";
+import { DEFAULT_BLOG_POSTS } from "./getBlogPosts";
 
 // Fonction utilitaire pour obtenir l'image par défaut basée sur le titre
 const getDefaultImageForTitle = (title: string): string => {
@@ -22,9 +23,16 @@ export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> 
       .eq('slug', slug)
       .maybeSingle();
 
-    if (error || !data) {
+    if (error) {
+      if ((error as { code?: string }).code === 'SUPABASE_DISABLED') {
+        return DEFAULT_BLOG_POSTS.find(p => p.slug === slug) ?? null;
+      }
       console.error(`Erreur lors de la récupération de l'article avec slug "${slug}":`, error);
       return null;
+    }
+
+    if (!data) {
+      return DEFAULT_BLOG_POSTS.find(p => p.slug === slug) ?? null;
     }
 
     const defaultImage = getDefaultImageForTitle(data.title);
