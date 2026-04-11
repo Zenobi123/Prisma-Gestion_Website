@@ -34,7 +34,7 @@ const BlogPostHeader: React.FC<BlogPostHeaderProps> = ({ post, onBackClick }) =>
           <img 
             src={post.image} 
             alt={post.title} 
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-top"
             onError={(e) => {
               // Si l'image n'est pas chargée, on montre un placeholder seulement
               const target = e.target as HTMLImageElement;
