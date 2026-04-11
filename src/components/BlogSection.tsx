@@ -117,7 +117,7 @@ const BlogSection = () => {
                   <img 
                     src={post.image} 
                     alt={post.title} 
-                    className="w-full h-48 object-cover"
+                    className="w-full h-48 object-cover object-top"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       console.log(`Image non chargée pour ${post.title}, utilisation de l'image par défaut`);
